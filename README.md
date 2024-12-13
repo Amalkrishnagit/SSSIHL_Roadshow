@@ -95,23 +95,36 @@ riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o hello.o hello.c
 ![4](https://github.com/user-attachments/assets/e0503bd3-6443-4e27-934a-165cb0a72fa8)
 
 riscv64-unknown-elf-objdump -d hello.o
+![5](https://github.com/user-attachments/assets/3894c449-40ad-40b7-8ac4-c7e885e1adf6)
+
 
 
 **Change directory to openlane flow directory**
+![6](https://github.com/user-attachments/assets/4bfbac96-eb21-42a3-9bb4-e036a869916c)
 cd Desktop/work/tools/openlane_working_dir/openlane
+![7](https://github.com/user-attachments/assets/b3e72ea9-2758-4857-b006-b42b47173456)
 
 docker
+![8](https://github.com/user-attachments/assets/1fad969c-99d9-4929-a33e-8c7429d60698)
 
 ./flow.tcl -interactive
+![9 0](https://github.com/user-attachments/assets/897144f9-ad79-4474-bb56-c7254621cfce)
 
 package require openlane 0.9
+![9](https://github.com/user-attachments/assets/7315abe3-c74c-4b9b-92ed-2741b9328fc6)
 
 prep -design picorv32a
+![10](https://github.com/user-attachments/assets/ac112113-e225-49af-ab2a-8468aabea9cd)
 
 run_synthesis
+![11](https://github.com/user-attachments/assets/94e44717-645f-4414-8b95-bb5d168ff0ce)
 
 run_floorplan
 
 eog designs/picorv32a/runs/13-12_07-00/results/floorplan/picorva32a.floorplan.def.png
 
-
+![12](https://github.com/user-attachments/assets/e04b1bd3-c841-48b8-958a-af999f6298d1)
+![13](https://github.com/user-attachments/assets/550b6df7-ec04-4545-9d43-2388cad06e2d)
+![14](https://github.com/user-attachments/assets/05970689-ced3-4c3a-a211-64d49c1d6f25)
+![15](https://github.com/user-attachments/assets/80f83722-275d-4993-8bc1-fef96f3647d2)
+![16](https://github.com/user-attachments/assets/4598b6bf-e146-48b6-8e03-bcde908162be)
