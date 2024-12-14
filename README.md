@@ -25,29 +25,49 @@ Overall, EDI in VLSI design enhances the design flow, ensuring consistency and c
 _password :vsdiat
 
 changing to risc-v commands(tamil to marathi)
+
 PLL-High clock speeds
+
 vlsisystemdesign.com
-Foundry IP,s-intellectual property
+
+Foundry IP's-intellectual property
+
 Why RISC (Architecture)file?
+
 ARM Architecture-mobile phones
+
 opensource versus proprietary
+
 flip flops-registers
+
 chip tapeout
+
 firmware download
-register transfer lecel-similar to c language converting to and and other gates
-welcome to linuxineed a lot of focus to the atmost level
-softcopy of RTL is ready and call
+
+RVL-register transfer level-similar to c language converting to and other gates
+
+welcome to linux - need a lot of focus to the atmost level
+
+softcopy of RTL is ready and called
+
 we have stick to one of the foundry-here skywater-minessota-sky130A-factory skywater-130 nanometers.
+
 number of cells-4 billion gates-for processors-GPU
+
 FPGA-BURNS PROGRAMME AND HARDWARE.
+
 CLOCK SHOLUD REACH AT ALL END POINTS AT THE SAME TIME.
-flipflop clocks
+
+flipflop-clocks
+
 routing
-skew
-routing
+
+skew ?
+
 GDS2(ii)-graphic database ii in VLSI-graphical dtatabase information interchange.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+### From code to chip
 **Step 1:**
 A virtual environment was loaded and a terminal was opened.
 ![1](https://github.com/user-attachments/assets/b916021f-4ede-486a-8ca5-85ce0cdac1af)
@@ -206,6 +226,8 @@ To compile and link a simple program for RISC-V:
    ```
 
 3. **Run** the program on a RISC-V emulator or actual hardware.
+
+   
 ![4](https://github.com/user-attachments/assets/e0503bd3-6443-4e27-934a-165cb0a72fa8)
 
 **Step 5:**
@@ -267,129 +289,71 @@ In summary, `riscv64-unknown-elf-objdump -d hello.o` disassembles the object fil
 ![5](https://github.com/user-attachments/assets/3894c449-40ad-40b7-8ac4-c7e885e1adf6)
 
 **Step 6:** 
+
 ### Change directory to openlane flow directory
+
 ![6](https://github.com/user-attachments/assets/4bfbac96-eb21-42a3-9bb4-e036a869916c)
+
 **Commands used:**cd Desktop/work/tools/openlane_working_dir/openlane
+
+**Step7:** Execute the following commands one by one
+
+**Commands used :**
+
+"docker"
+
+"./flow.tcl -interactive"
+
+"package require openlane 0.9"
+
+"prep -design picorv32a"
+
+"run_synthesis"
+
+"run_floorplan"
+
+Note: Consult the below images for clarity
+
 ![7](https://github.com/user-attachments/assets/b3e72ea9-2758-4857-b006-b42b47173456)
 
-docker
+
 ![8](https://github.com/user-attachments/assets/1fad969c-99d9-4929-a33e-8c7429d60698)
 
-./flow.tcl -interactive
+
 ![9 0](https://github.com/user-attachments/assets/897144f9-ad79-4474-bb56-c7254621cfce)
 
-package require openlane 0.9
+
 ![9](https://github.com/user-attachments/assets/7315abe3-c74c-4b9b-92ed-2741b9328fc6)
 
-prep -design picorv32a
+
 ![10](https://github.com/user-attachments/assets/ac112113-e225-49af-ab2a-8468aabea9cd)
 
-run_synthesis
+
 ![11](https://github.com/user-attachments/assets/94e44717-645f-4414-8b95-bb5d168ff0ce)
 
-run_floorplan
+**Step 8:** opening floorplan image
 
-eog designs/picorv32a/runs/13-12_07-00/results/floorplan/picorva32a.floorplan.def.png
+**Command used:**
+"eog designs/picorv32a/runs/13-12_07-00/results/floorplan/picorva32a.floorplan.def.png"
 
 ![12](https://github.com/user-attachments/assets/e04b1bd3-c841-48b8-958a-af999f6298d1)
+
+**Step 9:** run_placement
+
+ and openplacement image,if succesful you fill see the following  image.
+
 ![13](https://github.com/user-attachments/assets/550b6df7-ec04-4545-9d43-2388cad06e2d)
+
+**Step 10:** run_cts
+
 ![14](https://github.com/user-attachments/assets/05970689-ced3-4c3a-a211-64d49c1d6f25)
+
+**Step 11:** run_routing
+
 ![15](https://github.com/user-attachments/assets/80f83722-275d-4993-8bc1-fef96f3647d2)
+
+
 ![16](https://github.com/user-attachments/assets/4598b6bf-e146-48b6-8e03-bcde908162be)
 
-**CODE FOR BLINKING**
-// #include <ch32v00x.h>
-// #include <debug.h>
+### The end
 
-// #define BLINKY_GPIO_PORT GPIOD
-// #define BLINKY_GPIO_PIN GPIO_Pin_6
-// #define BLINKY_CLOCK_ENABLE RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOD, ENABLE)
-
-// void NMI_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
-// void HardFault_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
-// void Delay_Init(void);
-// void Delay_Ms(uint32_t n);
-
-// int main(void)
-// {
-// 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
-// 	SystemCoreClockUpdate();
-// 	Delay_Init();
-
-// 	GPIO_InitTypeDef GPIO_InitStructure = {0};
-
-// 	BLINKY_CLOCK_ENABLE;
-// 	GPIO_InitStructure.GPIO_Pin = BLINKY_GPIO_PIN;
-// 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-// 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-// 	GPIO_Init(BLINKY_GPIO_PORT, &GPIO_InitStructure);
-
-// 	uint8_t ledState = 0;
-// 	while (1)
-// 	{
-// 		GPIO_WriteBit(BLINKY_GPIO_PORT, BLINKY_GPIO_PIN, ledState);
-// 		ledState ^= 1; // invert for the next run
-// 		Delay_Ms(100);
-// 	}
-// }
-
-// void NMI_Handler(void) {}
-// void HardFault_Handler(void)
-// {
-// 	while (1)
-// 	{
-// 	}
-// }
-
-**
-CODE FOR PULSEWIDTH MODULATION**
-#include "debug.h"
-#define TIME_PERIOD 1000
-#define PRESC       0
-#define PULSE       632
-#define STEP_SIZE   10
-volatile u16 val;
-volatile u8 dir;
-void TIM1_PWMOut_Init(void){
-    GPIO_InitTypeDef GPIO_InitStructure={0};
-    TIM_OCInitTypeDef TIM_OCInitStructure={0};
-    TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure={0};
-    //RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOC | RCC_APB2Periph_TIM1, ENABLE );
-    RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOD | RCC_APB2Periph_AFIO, ENABLE );
-    RCC_APB1PeriphClockCmd( RCC_APB1Periph_TIM2, ENABLE );
-    GPIO_PinRemapConfig(GPIO_FullRemap_TIM2, ENABLE);
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_Init( GPIOD, &GPIO_InitStructure);
-    TIM_TimeBaseInitStructure.TIM_Period = TIME_PERIOD;
-    TIM_TimeBaseInitStructure.TIM_Prescaler = PRESC;
-    TIM_TimeBaseInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
-    TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;
-    TIM_TimeBaseInit( TIM2, &TIM_TimeBaseInitStructure);
-    TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM2;
-    TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
-    TIM_OCInitStructure.TIM_Pulse = PULSE;
-    TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
-    TIM_OC3Init( TIM2, &TIM_OCInitStructure );
-    TIM_CtrlPWMOutputs(TIM2, ENABLE );
-    //TIM_OC3PreloadConfig( TIM1, TIM_OCPreload_Disable );
-    //TIM_ARRPreloadConfig( TIM1, ENABLE );
-    TIM_Cmd( TIM2, ENABLE );
-}
-int main(void)
-{
-    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
-    SystemCoreClockUpdate();
-    Delay_Init();
-    TIM1_PWMOut_Init();
-    val = 0;
-    dir = 0;
-    // Loop
-    while(1){
-        val += (dir) ? -STEP_SIZE : STEP_SIZE;
-        TIM_SetCompare3(TIM2, val);
-        dir ^= (val == 1000 || val == 0) ? 1 : 0;
-        Delay_Ms(15);
-    }
-}
